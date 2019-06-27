@@ -10,6 +10,12 @@ import UIKit
 import CoreImage
 
 class ThingDoer: NSObject {
+  // TODO:
+  // Usability
+  // Performance (throttling + perform manipulations in background)
+  // Photo extension
+  // Refactoring
+
   // Image pipeline:
   // - Use the color picker to set a color coefficient for each channel.
   //   By default, multiply green and blue by 0.0 and red by 1.0.
