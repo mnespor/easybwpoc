@@ -59,8 +59,10 @@ class ThingDoer: NSObject {
     toneCurveFilter.setValue(CIVector(x: 0.75 - (highlightAmount * 0.5), y: 0.75), forKey: "inputPoint3")
     toneCurveFilter.setValue(CIVector(x: 1.0 - highlightAmount, y: 1.0), forKey: "inputPoint4")
     if levelsEnabled {
-      toneCurveFilter.setValue(colorMatrixFilter.outputImage, forKey: kCIInputImageKey)
-      vignetteFilter.setValue(toneCurveFilter.outputImage, forKey: kCIInputImageKey)
+      let randoFilters = colorMatrixFilter.outputImage?.autoAdjustmentFilters() ?? []
+      let randoFilter = randoFilters[1]
+      randoFilter.setValue(colorMatrixFilter.outputImage, forKey: kCIInputImageKey)
+      vignetteFilter.setValue(randoFilter.outputImage, forKey: kCIInputImageKey)
     } else {
       vignetteFilter.setValue(colorMatrixFilter.outputImage, forKey: kCIInputImageKey)
     }
