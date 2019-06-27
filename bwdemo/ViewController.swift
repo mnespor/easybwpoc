@@ -25,11 +25,35 @@ class ViewController: UIViewController {
     }
   }
 
-  @IBAction func handleSlider(_ sender: UISlider) {
-    thingDoer.hue = CGFloat(sender.value)
+  private func updateImage() {
     if let ciimage = thingDoer.processedImage(inputImage) {
       imageView.image = UIImage(ciImage: ciimage)
     }
+  }
+
+  @IBAction func handleSlider(_ sender: UISlider) {
+    thingDoer.hue = CGFloat(sender.value)
+    updateImage()
+  }
+
+  @IBAction func handleVibranceToggle(_ sender: UISwitch) {
+    thingDoer.levelsEnabled = sender.isOn
+    updateImage()
+  }
+
+  @IBAction func handleVignetteAmount(_ sender: UISlider) {
+    thingDoer.vignetteAmount = CGFloat(sender.value)
+    updateImage()
+  }
+
+  @IBAction func handleShadowAmount(_ sender: UISlider) {
+    thingDoer.shadowAmount = CGFloat(sender.value)
+    updateImage()
+  }
+
+  @IBAction func handleHighlightAmount(_ sender: UISlider) {
+    thingDoer.highlightAmount = CGFloat(sender.value)
+    updateImage()
   }
 
   // Next up: Draw a sample image and apply a filter chain from ThingDoer.
